@@ -21,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.muhammetkocak.alisverissepetim.ui.camera.BarcodeScannerScreen
 import com.muhammetkocak.alisverissepetim.ui.navigation.BottomNavItem
 import com.muhammetkocak.alisverissepetim.ui.screens.AddEditItemScreen
+import com.muhammetkocak.alisverissepetim.ui.screens.DashboardScreen
 import com.muhammetkocak.alisverissepetim.ui.screens.PriceComparisonScreen
 import com.muhammetkocak.alisverissepetim.ui.screens.ShoppingListScreen
 import com.muhammetkocak.alisverissepetim.ui.theme.AlisverissepetimTheme
@@ -88,10 +89,18 @@ fun MainScreen() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(BottomNavItem.Dashboard.route) {
-                // Placeholder for now
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    Text("Dashboard Screen (Ana Sayfa)")
-                }
+                DashboardScreen(
+                    viewModel = viewModel,
+                    onNavigateToLists = {
+                        navController.navigate(BottomNavItem.Lists.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    }
+                )
             }
             composable(BottomNavItem.Lists.route) {
                 ShoppingListScreen(

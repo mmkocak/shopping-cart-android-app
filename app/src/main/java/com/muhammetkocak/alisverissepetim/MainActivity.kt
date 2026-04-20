@@ -23,6 +23,7 @@ import com.muhammetkocak.alisverissepetim.ui.navigation.BottomNavItem
 import com.muhammetkocak.alisverissepetim.ui.screens.AddEditItemScreen
 import com.muhammetkocak.alisverissepetim.ui.screens.DashboardScreen
 import com.muhammetkocak.alisverissepetim.ui.screens.PriceComparisonScreen
+import com.muhammetkocak.alisverissepetim.ui.screens.SettingsScreen
 import com.muhammetkocak.alisverissepetim.ui.screens.ShoppingListScreen
 import com.muhammetkocak.alisverissepetim.ui.theme.AlisverissepetimTheme
 import com.muhammetkocak.alisverissepetim.ui.viewmodel.ShoppingViewModel
@@ -110,10 +111,7 @@ fun MainScreen() {
                 )
             }
             composable(BottomNavItem.Settings.route) {
-                // Placeholder for now
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    Text("Settings Screen (Ayarlar)")
-                }
+                SettingsScreen()
             }
             composable("add_edit_item") { backStackEntry ->
                 val scannedBarcode = backStackEntry.savedStateHandle.get<String>("scanned_barcode")
